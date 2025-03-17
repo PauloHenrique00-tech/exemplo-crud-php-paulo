@@ -2,15 +2,20 @@
 /* Veificar se o formulário foi acionado */
 if( isset($_POST['inserir']) ) {
 
+    
     // Acessando as funções do CRUD de Fabricantes
     require_once "../src/funcoes-fabricantes.php";
-
+    
     // Capturando o nome digitado do novo fabricante
     $nome = filter_input(
         INPUT_POST, "nome", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    
-    // Inserindo o novo fabricante através de uma função
+        
+        // Inserindo o novo fabricante através de uma função
     inserirFabricante($conexao, $nome);
+
+    /* Redirecionando para a visualização atualizada */
+    header("location:visualizar.php");
+    exit; // equivalente ao die()
 }        
 ?>
 <!DOCTYPE html>
