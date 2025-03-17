@@ -6,13 +6,24 @@ $id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 
 /* Chamando a função para carregar os dados de um fabricante */
 $fabricante = listarUmFabricante($conexao, $id);
+
+/* Verificando se o formulário de atualização foi acionado */
+if (isset($_POST['atualizar'])) {
+    $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
+
+    /* Exercício! Implemente a função para atualizar o nome do fabricante */
+    atualizarFabricante();
+
+    header("location:visualizar.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8">4
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fabricantes - Atualização</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">

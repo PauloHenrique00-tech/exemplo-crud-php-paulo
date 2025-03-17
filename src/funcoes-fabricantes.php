@@ -28,14 +28,14 @@ function listarFabricantes(PDO $conexao):array {
                                                         // void indica que não tem retorno
 function inserirFabricante(PDO $conexao, string $nomeDoFabricante):void {
     /* :named parameter (parâmetro nomeado)
-    Usamos este recurso do PDO para 'reservar' um espaço seguroem memória
+    Usamos este recurso do PDO para 'reservar' um espaço seguro em memória
     para colocação do dado. NUNCA passe de forma direta valores para comando SQL. */ 
     $sql = "INSERT INTO fabricantes(nome) VALUES(:nome)";
 
     try {
         $consulta = $conexao->prepare($sql);
 
-        /* bindValue() -> permite vicular o valor
+        /* bindValue() -> permite vincular o valor
         do parâmetro à consulta que será executada. É necessário indicar qual é o parâmetro (:nome), de onde vem o valor
         ($nomeDoFabricante) e de que tipo ele é (PDO:PARAM_STR) */
         $consulta->bindValue(":nome", $nomeDoFabricante, PDO::PARAM_STR);
@@ -45,6 +45,23 @@ function inserirFabricante(PDO $conexao, string $nomeDoFabricante):void {
         die("Erro ao inserir: ".$erro->getMessage());
     }
 }
+
+    /* Exercício! Implemente a função para atualizar o nome do fabricante */
+function atualizarFabricante(PDO $conexao, $idFabricante, $nomeDoFabricante):void {
+    $sql = "UPDATE fabricantes SET nome = :nome WHERE id = :id ";
+
+    try {
+        $consulta = $conexao->prepare($sql);
+        $consulta->bindValue(":nome", $nomeDoFabricante, PDO::PARAM_STR);
+        $consulta->execute();
+    } catch (Exception $erro) {
+        die("Erro ao inserir: ".$erro->getMessage());
+    }
+    header("location:visualizar.php");
+    exit;
+
+}
+?>
 
 
 // listarUmFabricante: usada pela página fabricantes/atualizar.php
