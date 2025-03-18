@@ -47,19 +47,19 @@ function inserirFabricante(PDO $conexao, string $nomeDoFabricante):void {
 }
 
     /* Exercício! Implemente a função para atualizar o nome do fabricante */
-function atualizarFabricante(PDO $conexao, $idFabricante, $nomeDoFabricante):void {
-    $sql = "UPDATE fabricantes SET nome = :nome WHERE id = :id ";
+function atualizarFabricante(PDO $conexao, $idFabricante, $nomeDoFabricante): void {
+    $sql = "UPDATE fabricantes SET nome = :nome WHERE id = :id";
 
     try {
         $consulta = $conexao->prepare($sql);
         $consulta->bindValue(":nome", $nomeDoFabricante, PDO::PARAM_STR);
+        $consulta->bindValue(":id", $idFabricante, PDO::PARAM_INT);
         $consulta->execute();
     } catch (Exception $erro) {
-        die("Erro ao inserir: ".$erro->getMessage());
+        die("Erro ao atualizar: " . $erro->getMessage());
     }
-    header("location:visualizar.php");
+    header("Location:visualizar.php");
     exit;
-
 }
 ?>
 
