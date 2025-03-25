@@ -46,36 +46,32 @@ function inserirFabricante(PDO $conexao, string $nomeDoFabricante):void {
     }
 }
 
-    /* Exercício! Implemente a função para atualizar o nome do fabricante */
-function atualizarFabricante(PDO $conexao, $idFabricante, $nomeDoFabricante): void {
+    // listarUmFabricante: usada pela página fabricantes/atualizar.php
+function listarUmFabricante(PDO $conexao, $idFabricante): array {
     $sql = "UPDATE fabricantes SET nome = :nome WHERE id = :id";
 
     try {
-        $consulta = $conexao->prepare($sql);
-        $consulta->bindValue(":nome", $nomeDoFabricante, PDO::PARAM_STR);
-        $consulta->bindValue(":id", $idFabricante, PDO::PARAM_INT);
-        $consulta->execute();
-    } catch (Exception $erro) {
-        die("Erro ao atualizar: " . $erro->getMessage());
-    }
-    header("Location:visualizar.php");
-    exit;
-}
-?>
-
-
-// listarUmFabricante: usada pela página fabricantes/atualizar.php
-function listarUmFabricante(PDO $conexao, int $idFabricante):array {
-   $sql = "SELECT * FROM fabricantes WHERE id = :id";
-   
-   try {
         $consulta = $conexao->prepare($sql);
         $consulta->bindValue(":id", $idFabricante, PDO::PARAM_INT);
         $consulta->execute();
 
         /* Usamos o fetch para garantir o retorno de um único array associativo com o resultado */
         return $consulta->fetch(PDO::FETCH_ASSOC);
-   } catch (Exception $erro) {
-        die("Erro ao carregar fabricante: ".$erro->getMessage());
-   }
+    } catch (Exception $erro) {
+        die("Erro ao carregar fabricante: " . $erro->getMessage());
+    }
+}
+
+// atualizarFabricante: usada em fabricantes/atualizar.php
+function atualizarFabricante($conexao, $idFabricante, $nomeDoFabricante):void {
+    $sql = "UPDATE fabricantes SET nome = :nome WHERE id = :id";
+
+    try {
+        $consulta = $conexao->prepare($sql);
+        $consulta-> bindValue(":nome", $nomeDoFabricante, PDO::PARAM_STR);
+        $consulta-> bindValue(":id", $idFabricante, PDO::PARAM_INT);
+        $consulta->execute();
+    } catch (Exception $erro) {
+        die("Erro ao atualizar fabricante: ".$erro->getMessage());
+    }
 }
