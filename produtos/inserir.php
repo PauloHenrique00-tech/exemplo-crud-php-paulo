@@ -5,10 +5,16 @@ $listadeFabricantes = listarFabricantes($conexao);
 
 if(isset($_POST["inserir"])) {
     // capturar/sanitizar os dados
-    $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
-    $preco = filter_input(INPUT_POST, "preco", FILTER_SANITIZE_NUMBER_FLOAT);
+    $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $preco = filter_input(INPUT_POST, "preco", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+    $quantidade = filter_input(INPUT_POST, "quantidade", FILTER_SANITIZE_NUMBER_INT);
+
+    // Obs: lembre-se que capturamos na verdade o value (que na prática é o id do fabricante)
+    $idFabricante = filter_input(INPUT_POST, "fabricante", FILTER_SANITIZE_NUMBER_INT);
+    $descricao = filter_input(INPUT_POST, "descricao", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
     // Chamar a função responsável por inserir o produto e passar os parâmetros
-function inserirProduto($conexao, $nome, $preco, $quantidade, $idFabricante, $descricao)
+    inserirProduto($conexao, $nome, $preco, $quantidade, $idFabricante, $descricao);
     header("location:visualizar.php");
     exit;
     /* NÃO SE ESQUEÇA DE TERMINAR A FUNÇÃO inserirProduto() */
