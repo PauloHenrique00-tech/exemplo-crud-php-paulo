@@ -11,8 +11,9 @@ function listarProdutos(PDO $conexao):array {
             ON produtos.fabricante_id = fabricantes.id
             ORDER BY produto";
 
-    try {
+    try { 
         $consulta = $conexao->prepare($sql);
+        
         $consulta->execute();
         return $consulta->fetchAll(PDO::FETCH_ASSOC);
     } catch (Exception $erro) {
@@ -38,5 +39,22 @@ function inserirProduto(
         $consulta->execute();
     } catch (Exception $erro) {
         die("Erro ao inserir: ".$erro->getMessage());
+    }
+}
+
+
+function listarUmProduto(PDO $conexao, int $id ):array {
+    $sql = "SELECT * FROM produtos WHERE id = :id";
+
+    try {
+        $consulta = $conexao->prepare($sql);
+        $consulta->bindValue(":id", $id, PDO::PARAM_INT);
+        $consulta->execute();
+
+        /* Usamos o fetch para garantir o retorno
+        de um único array associativo com o resultado */
+        return $consulta->fetch(PDO::FETCH_ASSOC);
+    } catch (Exception $erro) {
+        die("Erro ao carregar produto: ".$erro->getMessage());
     }
 }
