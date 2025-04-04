@@ -24,15 +24,15 @@ $produto = listarUmProduto($conexao, $id);
         <form action="" method="post" class="w-50">
             <div class="mb-3">
                 <label class="form-label" for="nome">Nome:</label>
-                <input  value="<?=$produto['nome']?>"class="form-control" type="text" name="nome" id="nome" required>
+                <input value="<?=$produto['nome']?>"class="form-control" type="text" name="nome" id="nome" required>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="preco">Preço:</label>
-                <input  value="<?=$produto['preco']?>"class="form-control" type="number" min="10" max="10000" step="0.01" name="preco" id="preco" required>
+                <input value="<?=$produto['preco']?>"class="form-control" type="number" min="10" max="10000" step="0.01" name="preco" id="preco" required>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="quantidade">Quantidade:</label>
-                <input  value="<?=$produto['quantidade']?>"class="form-control" type="number" min="1" max="100" name="quantidade" id="quantidade" required>
+                <input value="<?=$produto['quantidade']?>"class="form-control" type="number" min="1" max="100" name="quantidade" id="quantidade" required>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="fabricante">Fabricante:</label>
