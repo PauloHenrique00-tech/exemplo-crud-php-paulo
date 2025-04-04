@@ -21,3 +21,17 @@ Em funcoes-produtos.php programe uma função chamada listarUmProduto que receba
 Em produtos/atualizar.php faça a programação necessária para chamar a função listarUmProduto e, após receber os dados de retorno dela, exiba os valores nos campos nome, preço, quantidade e descricao.
 
 Obs.: por enquanto, não se preocupe em mostrar qual o fabricante do produto selecionado.
+
+Exercício 04 (04/04/2025)
+Faça a programação necessária para a ação de atualizar um produto.
+
+O que precisa (não necessariamente nessa ordem):
+
+Em produtos/atualizar.php (ações parecidas com o que foi feito ao inserir):
+Detectar quando o formulário é acionado
+Capturar/sanitizar os dados do formulário
+Chamar a função atualizarProduto e passar os dados para ela
+Redirecionar para a página visualizar.php
+Em funcoes-produtos.php:
+Criar a função atualizarProduto
+Fazer com que esta função receba os parâmetros necessários para executar o UPDATE: conexao, id do produto, preço, quantidade, descricao e fabricante do produto
