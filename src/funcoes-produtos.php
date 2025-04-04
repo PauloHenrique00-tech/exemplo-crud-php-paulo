@@ -58,3 +58,28 @@ function listarUmProduto(PDO $conexao, int $id ):array {
         die("Erro ao carregar produto: ".$erro->getMessage());
     }
 }
+
+function atualizarProduto(
+    PDO $conexao, int $id, string $nome, string $descricao, float $preco, int $quantidade, int $fabricante_id):void {
+
+    $sql = "UPDATE produtos 
+            SET nome = :nome, preco = :preco, quantidade = :quantidade, descricao = :descricao, fabricante_id = :fabricante_id 
+            WHERE id = :id";
+
+    
+
+    try { 
+
+        $consulta = $conexao->prepare($sql);
+        $consulta->bindValue(":nome", $nome, PDO::PARAM_STR);
+        $consulta->bindValue(":descricao", $descricao, PDO::PARAM_STR);
+        $consulta->bindValue(":preco", $preco, PDO::PARAM_STR);
+        $consulta->bindValue(":id", $id, PDO::PARAM_INT);
+        $consulta->bindValue(":fabricante_id", $fabricante_id, PDO::PARAM_INT);
+        $consulta->bindValue(":quantidade", $quantidade, PDO::PARAM_INT);
+        $consulta->execute();
+    } catch (Exception $erro) {
+        die("Erro ao atualizar fabricante: ".$erro->getMessage());
+    }
+}
+
