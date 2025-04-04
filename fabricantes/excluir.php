@@ -8,6 +8,8 @@ if(isset($_GET['confirmar-exclusao'])){
     header("location:visualizar.php");
     exit;
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
