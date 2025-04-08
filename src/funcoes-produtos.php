@@ -79,7 +79,7 @@ function atualizarProduto(
         $consulta->bindValue(":quantidade", $quantidade, PDO::PARAM_INT);
         $consulta->execute();
     } catch (Exception $erro) {
-        die("Erro ao atualizar fabricante: ".$erro->getMessage());
+        die("Erro ao atualizar produto: ".$erro->getMessage());
     }
 }
 
