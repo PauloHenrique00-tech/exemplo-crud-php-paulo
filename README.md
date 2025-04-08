@@ -35,3 +35,6 @@ Redirecionar para a página visualizar.php
 Em funcoes-produtos.php:
 Criar a função atualizarProduto
 Fazer com que esta função receba os parâmetros necessários para executar o UPDATE: conexao, id do produto, preço, quantidade, descricao e fabricante do produto
+
+Exercício 05 (04/04/2025)
+Faça a programação necessária para a ação de excluir um produto.
